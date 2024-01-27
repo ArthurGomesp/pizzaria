@@ -24,4 +24,5 @@ public class ProductInfoDTO {
                 this.productType = product.get().getProductType();
                 this.unitaryValue = product.get().getUnitaryValue();
         }
+
 }
