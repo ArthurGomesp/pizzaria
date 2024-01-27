@@ -12,8 +12,10 @@ public class User {
     private String email;
     private String password;
     private String phoneNumber;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private StatusAccount status = StatusAccount.ACTIVE;
+    @Enumerated(EnumType.STRING)
+    private  UserType userType;
 
     public User() {
     }
@@ -72,5 +74,21 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public StatusAccount getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusAccount status) {
+        this.status = status;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

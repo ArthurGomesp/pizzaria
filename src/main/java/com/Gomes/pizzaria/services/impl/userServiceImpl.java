@@ -31,7 +31,7 @@ public class userServiceImpl implements UserService {
 
     public UserInfoDTO findByID(Long id){
         Optional<User> user = userRepository.findById(id);
-        if(verifyStatusAccount(user)){
+        if(!verifyStatusAccount(user)){
             throw new DisabledAccountException("Esta conta foi desativada!");
         }
         return mapper.map(user, UserInfoDTO.class);

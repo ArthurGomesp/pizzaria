@@ -1,6 +1,7 @@
 package com.Gomes.pizzaria.domain.dto;
 
 
+import com.Gomes.pizzaria.domain.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +12,5 @@ public class UserCreateDTO {
     private String email;
     private String password;
     private String phoneNumber;
+    private UserType userType;
 }
