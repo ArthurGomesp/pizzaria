@@ -1,8 +1,10 @@
 package com.Gomes.pizzaria.services.impl;
 
+import com.Gomes.pizzaria.domain.StatusAccount;
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.UserCreateDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
+import com.Gomes.pizzaria.exception.DisabledAccountException;
 import com.Gomes.pizzaria.repositories.userRepository;
 import com.Gomes.pizzaria.services.UserService;
 
@@ -29,11 +31,22 @@ public class userServiceImpl implements UserService {
 
     public UserInfoDTO findByID(Long id){
         Optional<User> user = userRepository.findById(id);
+        if(verifyStatusAccount(user)){
+            throw new DisabledAccountException("Esta conta foi desativada!");
+        }
         return mapper.map(user, UserInfoDTO.class);
     }
 
-    public UserInfoDTO findByID(Long id){
+    public void disableAccount(Long id){
         Optional<User> user = userRepository.findById(id);
-        return mapper.map(user, UserInfoDTO.class);
+        if(verifyStatusAccount(user)){
+            user.get().setActiveAccount(StatusAccount.DISABLED);
+        }
+
+    }
+
+    public Boolean verifyStatusAccount(Optional<User> user){
+        if (user.get().getActiveAccount().equals(StatusAccount.ACTIVE)) return true;
+        return false;
     }
 }
