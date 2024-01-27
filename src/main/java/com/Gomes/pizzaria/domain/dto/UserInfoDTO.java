@@ -1,7 +1,7 @@
 package com.Gomes.pizzaria.domain.dto;
 
-import com.Gomes.pizzaria.domain.StatusAccount;
-import com.Gomes.pizzaria.domain.UserType;
+import com.Gomes.pizzaria.domain.enums.StatusAccount;
+import com.Gomes.pizzaria.domain.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

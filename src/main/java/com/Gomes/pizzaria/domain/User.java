@@ -1,5 +1,7 @@
 package com.Gomes.pizzaria.domain;
 
+import com.Gomes.pizzaria.domain.enums.StatusAccount;
+import com.Gomes.pizzaria.domain.enums.UserType;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +17,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private StatusAccount status = StatusAccount.ACTIVE;
     @Enumerated(EnumType.STRING)
-    private  UserType userType;
+    private UserType userType;
 
     public User() {
     }

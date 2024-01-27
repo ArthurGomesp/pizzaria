@@ -28,7 +28,6 @@ public class userController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable @RequestBody Long id){
-        userService.disableAccount(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuario desativado com sucesso!");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(userService.disableAccount(id));
     }
 }

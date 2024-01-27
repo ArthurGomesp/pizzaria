@@ -11,7 +11,7 @@ public interface UserService {
     User create(UserCreateDTO dto);
 
     UserInfoDTO findByID(Long id);
-    void disableAccount(Long id);
+    String disableAccount(Long id);
 
 }
 
