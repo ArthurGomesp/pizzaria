@@ -3,7 +3,7 @@
 
   
 
-Este é um exemplo de aplicativo Java Spring Boot com frontend React. O aplicativo utiliza JDK 17, Spring Boot 3.2.4, JUnit para testes, PostgreSQL como banco de dados relacional e QuestDB como banco de dados de séries temporais(Opcional).
+Este é um exemplo de aplicativo Java Spring Boot. O aplicativo utiliza JDK 17, Spring Boot 3.2.4, JUnit para testes, Mysql como banco de dados relacional.
 
   
 
@@ -11,9 +11,8 @@ Este é um exemplo de aplicativo Java Spring Boot com frontend React. O aplicati
 
   
 
-- Docker (versão 20.10.7)
-
-- Docker Compose (versão 1.29.2)
+- JDK 17
+- Insominia/postman
 
   
 
@@ -21,13 +20,7 @@ Este é um exemplo de aplicativo Java Spring Boot com frontend React. O aplicati
 
   
 
-1. Certifique-se de ter o Docker (versão 20.10.7) e o Docker Compose (versão 1.29.2) instalados em seu sistema.
-
-  
-
-2. Clone este repositório:
-
-  
+1. Clone este repositório:
 
 ```bash
 
@@ -37,7 +30,7 @@ git  clone  https://github.com/seu-usuario/nome-do-repositorio.git
 
   
 
-3. Navegue até o diretório do projeto:
+2. Navegue até o diretório do projeto:
 
   
 
@@ -49,19 +42,7 @@ cd  nome-do-repositorio
 
   
 
-4. Execute o Docker Compose para construir e iniciar os contêineres:
-
-  
-
-```bash
-
-docker-compose  up  --build
-
-```
-
-  
-
-5. O aplicativo estará disponível em:
+3. O aplicativo estará disponível em:
 
   
 
