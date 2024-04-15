@@ -24,7 +24,7 @@ Este é um exemplo de aplicativo Java Spring Boot. O aplicativo utiliza JDK 17, 
 
 ```bash
 
-git  clone  https://github.com/seu-usuario/nome-do-repositorio.git
+git  clone  https://github.com/ArthurGomesp/pizzaria.git
 
 ```
 
