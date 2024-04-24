@@ -36,7 +36,7 @@ git  clone  https://github.com/ArthurGomesp/pizzaria.git
 
 ```bash
 
-cd  nome-do-repositorio
+cd  pizzaria
 
 ```
 
@@ -58,28 +58,10 @@ cd  nome-do-repositorio
 
 - Spring Boot
 
-
 - MySql
 
 - Testes com JUnit
 
   
 
-## Melhorias Possíveis
 
-  
-
-- Implementar autenticação e autorização.
-
-- Adicionar documentação Swagger para a API Spring Boot.
-
-- Configurar testes de integração.
-
-- Implementar pipeline de CI/CD.
-
-- Adicionar logs e monitoramento.
-
-- Melhorar a experiência do usuário no frontend React com mais interatividade e feedback visual.
-
-- Implementar Changelog;
-- Implementar Swagger
