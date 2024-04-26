@@ -1,25 +1,22 @@
 package com.Gomes.pizzaria.services.impl;
 
 import com.Gomes.pizzaria.domain.Product;
-import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.ProductCreateDTO;
 import com.Gomes.pizzaria.domain.dto.ProductInfoDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
 import com.Gomes.pizzaria.domain.enums.ProductType;
-import com.Gomes.pizzaria.domain.enums.StatusAccount;
+
 import com.Gomes.pizzaria.domain.enums.UserType;
 import com.Gomes.pizzaria.exception.ObjectNotFound;
 import com.Gomes.pizzaria.exception.UnauthorizedProductCreationException;
 import com.Gomes.pizzaria.repositories.ProductRepository;
 import com.Gomes.pizzaria.services.UserService;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;

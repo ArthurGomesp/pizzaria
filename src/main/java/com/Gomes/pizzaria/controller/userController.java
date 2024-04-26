@@ -2,6 +2,7 @@ package com.Gomes.pizzaria.controller;
 
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.UserCreateDTO;
+import com.Gomes.pizzaria.domain.dto.UserUpdateDTO;
 import com.Gomes.pizzaria.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,10 @@ public class userController {
     @GetMapping("/{id}")
     public ResponseEntity findById(@PathVariable @RequestBody Long id){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findByID(id));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable @RequestBody Long id, @RequestBody UserUpdateDTO dto){
+        return userService.update(id, dto)  ;
     }
 
     @DeleteMapping("/{id}")

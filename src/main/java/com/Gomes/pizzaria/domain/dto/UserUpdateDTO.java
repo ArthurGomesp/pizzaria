@@ -1,7 +1,5 @@
 package com.Gomes.pizzaria.domain.dto;
 
-
-import com.Gomes.pizzaria.domain.enums.StatusAccount;
 import com.Gomes.pizzaria.domain.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,15 +10,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserInfoDTO {
+public class UserUpdateDTO {
     private String name;
     private String email;
+    private String password;
     private String phoneNumber;
-    private StatusAccount activeAccount;
     private UserType userType;
-
-
-    public UserInfoDTO(UserInfoDTO byID) {
-        this(byID.getName(), byID.getEmail(), byID.getPhoneNumber(), byID.getActiveAccount(), byID.getUserType());
-    }
 }

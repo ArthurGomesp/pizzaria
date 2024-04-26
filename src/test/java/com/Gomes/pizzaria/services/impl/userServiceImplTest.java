@@ -3,6 +3,7 @@ package com.Gomes.pizzaria.services.impl;
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.UserCreateDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
+import com.Gomes.pizzaria.domain.dto.UserUpdateDTO;
 import com.Gomes.pizzaria.domain.enums.StatusAccount;
 import com.Gomes.pizzaria.domain.enums.UserType;
 import com.Gomes.pizzaria.exception.DisabledAccountException;
@@ -15,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
@@ -131,5 +134,36 @@ class userServiceImplTest {
 
         // Assert
         assertTrue(result);
+    }
+
+
+    @Test
+     void test_update_user_name() {
+        // Arrange
+        Long id = 1L;
+        UserUpdateDTO dto = new UserUpdateDTO();
+        dto.setName("John Doe");
+
+        User user = new User();
+        user.setId(id);
+        user.setName("Jane Doe");
+
+        Optional<User> optionalUser = Optional.of(user);
+        when(userRepository.save(any())).thenReturn(user);
+        when(userRepository.findById(id)).thenReturn(optionalUser);
+
+        // Act
+        ResponseEntity response = userService.update(id, dto);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        UserInfoDTO userInfoDTO = (UserInfoDTO) response.getBody();
+        assertEquals("John Doe", userInfoDTO.getName());
+    }
+    @Test
+    void test_update_user_with_UserNotFound() {
+        assertThrows(ObjectNotFound.class, () ->{
+            userService.update(1L, new UserUpdateDTO());
+        });
     }
 }

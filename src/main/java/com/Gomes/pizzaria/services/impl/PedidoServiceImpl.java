@@ -14,8 +14,6 @@ import com.Gomes.pizzaria.repositories.ProductRepository;
 import com.Gomes.pizzaria.repositories.UserRepository;
 import com.Gomes.pizzaria.services.PedidoService;
 import com.Gomes.pizzaria.services.ProductService;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +32,7 @@ public class  PedidoServiceImpl implements PedidoService {
     private UserRepository userRepository;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private ModelMapper mapper;
+
     @Autowired
     private PedidoRepository pedidoRepository;
     @Autowired
