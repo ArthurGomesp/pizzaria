@@ -5,6 +5,7 @@ import com.Gomes.pizzaria.domain.Product;
 
 import com.Gomes.pizzaria.domain.dto.ProductCreateDTO;
 import com.Gomes.pizzaria.domain.dto.ProductInfoDTO;
+import com.Gomes.pizzaria.domain.dto.ProductUpdateDTO;
 import com.Gomes.pizzaria.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,18 @@ public class productContoller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity create(@PathVariable @RequestBody Long id){
+    public ResponseEntity get(@PathVariable @RequestBody Long id){
         ProductInfoDTO product = productService.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(product);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity update(@PathVariable @RequestBody Long id, @RequestBody ProductUpdateDTO dto){
+        ProductInfoDTO product = productService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable @RequestBody Long id){
+        return productService.delete(id);
     }
 }

@@ -3,6 +3,7 @@ package com.Gomes.pizzaria.services.impl;
 import com.Gomes.pizzaria.domain.Product;
 import com.Gomes.pizzaria.domain.dto.ProductCreateDTO;
 import com.Gomes.pizzaria.domain.dto.ProductInfoDTO;
+import com.Gomes.pizzaria.domain.dto.ProductUpdateDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
 import com.Gomes.pizzaria.domain.enums.ProductType;
 
@@ -98,7 +99,33 @@ class ProductServiceImplTest {
             service.findById(1L);
         });
     }
+    @Test
+    public void test_update_product_name() {
+        // Arrange
+        Long id = 1L;
+        ProductUpdateDTO dto = new ProductUpdateDTO();
+        dto.setProductName("New Product Name");
 
+        Product product = new Product(id, "Old Product Name", "Description", BigDecimal.valueOf(10.0));
+        Optional<Product> optionalProduct = Optional.of(product);
+        when(productRepository.findById(id)).thenReturn(optionalProduct);
+
+        // Act
+        ProductInfoDTO result = service.update(id, dto);
+
+        // Assert
+        assertEquals(dto.getProductName(), result.getProductName());
+        assertEquals(product.getDescription(), result.getDescription());
+        assertEquals(product.getProductType(), result.getProductType());
+        assertEquals(product.getUnitaryValue(), result.getUnitaryValue());
+    }
+    @Test
+    public void test_update_product_name_is_empty() {
+            assertThrows(ObjectNotFound.class, () ->{
+                service.update(1l, new ProductUpdateDTO());
+            });
+
+    }
 }
 
 
