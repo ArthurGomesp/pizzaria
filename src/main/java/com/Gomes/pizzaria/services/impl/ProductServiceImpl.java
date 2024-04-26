@@ -10,7 +10,6 @@ import com.Gomes.pizzaria.exception.UnauthorizedProductCreationException;
 import com.Gomes.pizzaria.repositories.ProductRepository;
 import com.Gomes.pizzaria.services.ProductService;
 import com.Gomes.pizzaria.services.UserService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +22,6 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     @Autowired
     private UserService userService;
-    @Autowired
-    private ModelMapper mapper;
 
     @Override
     public Product create(ProductCreateDTO dto, Long id) {
@@ -47,7 +44,6 @@ public class ProductServiceImpl implements ProductService {
 
     private Boolean isEmployee(Long id) {
         UserInfoDTO user = userService.findByID(id);
-        if (user.getUserType().equals(UserType.EMPLOYEE)) return true;
-        return false;
+        return user.getUserType().equals(UserType.EMPLOYEE);
     }
 }
