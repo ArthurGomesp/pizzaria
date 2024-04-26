@@ -1,9 +1,7 @@
 package com.Gomes.pizzaria.controller;
 
-import com.Gomes.pizzaria.domain.Pedido;
-import com.Gomes.pizzaria.domain.Product;
+
 import com.Gomes.pizzaria.domain.dto.PedidoDTO;
-import com.Gomes.pizzaria.domain.dto.ProductCreateDTO;
 import com.Gomes.pizzaria.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,10 +2,14 @@ package com.Gomes.pizzaria.domain;
 
 import com.Gomes.pizzaria.domain.dto.PedidoDTO;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "pedido")
 public class Pedido {
@@ -32,35 +36,4 @@ public class Pedido {
         this.total = totalValue;
     }
 
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public List<ObjectPedido> getObjectPedidoList() {
-        return objectPedidoList;
-    }
-
-    public void setObjectPedidoList(List<ObjectPedido> objectPedidoList) {
-        this.objectPedidoList = objectPedidoList;
-    }
 }

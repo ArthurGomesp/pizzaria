@@ -5,7 +5,7 @@ import com.Gomes.pizzaria.domain.Pedido;
 import com.Gomes.pizzaria.domain.Product;
 import com.Gomes.pizzaria.domain.dto.PedidoDTO;
 import com.Gomes.pizzaria.domain.dto.PedidoInfoDTO;
-import com.Gomes.pizzaria.domain.dto.ProductInfoDTO;
+
 import com.Gomes.pizzaria.exception.DisabledAccountException;
 import com.Gomes.pizzaria.exception.ObjectNotFound;
 import com.Gomes.pizzaria.repositories.ObjectPedidoRepository;
@@ -14,7 +14,7 @@ import com.Gomes.pizzaria.repositories.ProductRepository;
 import com.Gomes.pizzaria.repositories.UserRepository;
 import com.Gomes.pizzaria.services.PedidoService;
 import com.Gomes.pizzaria.services.ProductService;
-import com.Gomes.pizzaria.services.UserService;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PedidoServiceImpl implements PedidoService {
+public class  PedidoServiceImpl implements PedidoService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired

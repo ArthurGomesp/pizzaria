@@ -1,7 +1,12 @@
 package com.Gomes.pizzaria.controller.exception;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Setter
+@Getter
 public class StandardError {
     private LocalDateTime timesStamp;
     private Integer status;
@@ -15,35 +20,4 @@ public class StandardError {
         this.path = path;
     }
 
-    public LocalDateTime getTimesStamp() {
-        return timesStamp;
-    }
-
-    public void setTimesStamp(LocalDateTime timesStamp) {
-        this.timesStamp = timesStamp;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
 }
