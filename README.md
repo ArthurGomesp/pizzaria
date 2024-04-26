@@ -48,7 +48,12 @@ cd  pizzaria
 
 - API Spring Boot: [http://localhost:8080](http://localhost:8080)
 
-  
+
+## Vsualize pela interface do swagger
+  -  Copie o texto: https://github.com/ArthurGomesp/pizzaria/blob/main/Swagger
+  - Entre no swagger editor: https://editor.swagger.io/
+  - Apage todo o texto apertando ( CTRL + A )
+  - E por fim cole o texto que foi copiado
 
 ## Skills Utilizadas
 
@@ -60,7 +65,9 @@ cd  pizzaria
 
 - MySql
 
-- Testes com JUnit
+- Testes com JUnit e mockito
+  
+- swagger
 
   
 
