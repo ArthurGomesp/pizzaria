@@ -3,6 +3,7 @@ package com.Gomes.pizzaria.services.impl;
 import com.Gomes.pizzaria.domain.Product;
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.ProductCreateDTO;
+import com.Gomes.pizzaria.domain.dto.ProductInfoDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
 import com.Gomes.pizzaria.domain.enums.ProductType;
 import com.Gomes.pizzaria.domain.enums.StatusAccount;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -81,7 +83,36 @@ class ProductServiceImplTest {
         });
     }
 
+
     @Test
     void findById() {
+        Long id = 1L;
+        ProductInfoDTO expected = new ProductInfoDTO(Optional.of(new Product(id, "Product 1", "Description 1", BigDecimal.valueOf(10.0))));
+        when(productRepository.findById(any())).thenReturn(Optional.of(new Product(id, "Product 1", "Description 1", BigDecimal.valueOf(10.0))));
+        ProductInfoDTO result = service.findById(id);
+        assertEquals(expected.getDescription(), result.getDescription());
+        assertEquals(expected.getProductName(), result.getProductName());
+        assertEquals(expected.getUnitaryValue(), result.getUnitaryValue());
     }
+
+    @Test
+    void findById_is_Empty() {
+        assertThrows(ObjectNotFound.class, () ->{
+            service.findById(1L);
+        });
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
