@@ -29,7 +29,7 @@ public class  PedidoServiceImpl implements PedidoService {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
-    private userServiceImpl userServiceImpl;
+    private UserServiceImpl userServiceImpl;
     @Autowired
     private UserRepository userRepository;
     @Autowired

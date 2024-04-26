@@ -1,5 +1,6 @@
 package com.Gomes.pizzaria.domain;
 
+import com.Gomes.pizzaria.domain.dto.UserCreateDTO;
 import com.Gomes.pizzaria.domain.enums.StatusAccount;
 import com.Gomes.pizzaria.domain.enums.UserType;
 import jakarta.persistence.*;
@@ -32,6 +33,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(UserCreateDTO dto) {
+        this.name = dto.getName();
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.phoneNumber = dto.getPhoneNumber();
+        this.userType = dto.getUserType();
     }
 
     public StatusAccount getActiveAccount() {

@@ -4,6 +4,7 @@ import com.Gomes.pizzaria.domain.enums.StatusAccount;
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.UserCreateDTO;
 import com.Gomes.pizzaria.domain.dto.UserInfoDTO;
+import com.Gomes.pizzaria.domain.enums.UserType;
 import com.Gomes.pizzaria.exception.DisabledAccountException;
 import com.Gomes.pizzaria.exception.ObjectNotFound;
 import com.Gomes.pizzaria.repositories.UserRepository;
@@ -16,20 +17,18 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class userServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private ModelMapper mapper;
 
     @Override
-
     public User create(UserCreateDTO dto){
-        return userRepository.save(mapper.map(dto, User.class));
+        User user = new User(dto);
+        return userRepository.save(user);
     }
-    @Override
 
+    @Override
     public UserInfoDTO findByID(Long id){
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()){
@@ -37,7 +36,8 @@ public class userServiceImpl implements UserService {
                 throw new DisabledAccountException("Esta conta foi desativada!");
             }
 
-            return mapper.map(user, UserInfoDTO.class);
+            return new UserInfoDTO( user.get().getName(), user.get().getEmail(),
+                    user.get().getPhoneNumber(), user.get().getActiveAccount(), user.get().getUserType());
         } else {
             throw new ObjectNotFound("Objeto não encontrado.");
         }
@@ -53,7 +53,7 @@ public class userServiceImpl implements UserService {
             if (userRepository.findById(user.getId()).get().getActiveAccount().equals(StatusAccount.DISABLED)) {
                 return "Esta conta foi desabilitada com sucesso!";
             } else {
-                return " ";
+                throw new RuntimeException("Erro ao desabilitar esta conta.");
             }
         }else {
             throw new ObjectNotFound("Objeto não encontrado.");
@@ -62,7 +62,6 @@ public class userServiceImpl implements UserService {
     }
 
     public Boolean verifyStatusAccount(Optional<User> user){
-        if (user.get().getActiveAccount().equals(StatusAccount.ACTIVE)) return true;
-        return false;
+        return user.get().getActiveAccount().equals(StatusAccount.ACTIVE);
     }
 }

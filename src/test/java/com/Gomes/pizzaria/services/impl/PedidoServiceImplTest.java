@@ -45,7 +45,7 @@ class PedidoServiceImplTest {
     private ObjectPedidoRepository objectPedidoRepository;
 
     @Mock
-    private userServiceImpl userServiceImpl;
+    private UserServiceImpl userServiceImpl;
 
     @BeforeEach
     void setup() {
