@@ -6,6 +6,8 @@ import com.Gomes.pizzaria.domain.Product;
 import com.Gomes.pizzaria.domain.User;
 import com.Gomes.pizzaria.domain.dto.PedidoDTO;
 import com.Gomes.pizzaria.domain.dto.PedidoInfoDTO;
+import com.Gomes.pizzaria.exception.DisabledAccountException;
+import com.Gomes.pizzaria.exception.ObjectNotFound;
 import com.Gomes.pizzaria.repositories.ObjectPedidoRepository;
 import com.Gomes.pizzaria.repositories.PedidoRepository;
 import com.Gomes.pizzaria.repositories.ProductRepository;
@@ -20,6 +22,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -92,4 +95,57 @@ class PedidoServiceImplTest {
         assertEquals(expected.getObjectPedidoList(), result.getObjectPedidoList());
     }
 
+    @Test
+    public void test_create_when_user_is_not_present() {
+        // Arrange
+        Long userId = 1L;
+        List<ObjectPedido> objectPedidoList = new ArrayList<>();
+        objectPedidoList.add(new ObjectPedido(new Pedido(), 1L, 2));
+        PedidoDTO pedidoDTO = new PedidoDTO(userId, objectPedidoList);
+
+
+        assertThrows(ObjectNotFound.class, () ->{
+            pedidoService.create(pedidoDTO);
+        });
+    }
+
+    @Test
+    public void test_create_valid_user_although_user_is_disabled() {
+        // Arrange
+        Long userId = 1L;
+        List<ObjectPedido> objectPedidoList = new ArrayList<>();
+        objectPedidoList.add(new ObjectPedido(new Pedido(), 1L, 2));
+        PedidoDTO pedidoDTO = new PedidoDTO(userId, objectPedidoList);
+
+        when(userRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(userServiceImpl.verifyStatusAccount(any())).thenReturn(false);
+        assertThrows(DisabledAccountException.class, () ->{
+            pedidoService.create(pedidoDTO);
+        });
+    }
+
+    @Test
+    public void test_create_valid_user_id_and_objectPedido_Not_present() {
+        // Arrange
+        Long userId = 1L;
+        List<ObjectPedido> objectPedidoList = new ArrayList<>();
+        objectPedidoList.add(new ObjectPedido(new Pedido(), 1L, 2));
+        PedidoDTO pedidoDTO = new PedidoDTO(userId, objectPedidoList);
+
+        User user = new User();
+        user.setId(userId);
+        when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+        Pedido pedido = new Pedido();
+        pedido.setUserId(userId);
+        pedido.setObjectPedidoList(objectPedidoList);
+        pedido.setTotal(BigDecimal.TEN.multiply(BigDecimal.valueOf(2)));
+        when(pedidoRepository.save(any())).thenReturn(pedido);
+        when(userRepository.findById(userId)).thenReturn(Optional.of(new User()));
+        when(userServiceImpl.verifyStatusAccount(any())).thenReturn(true);
+
+        assertThrows(ObjectNotFound.class, () ->{
+            pedidoService.create(pedidoDTO);
+        });
+    }
 }
